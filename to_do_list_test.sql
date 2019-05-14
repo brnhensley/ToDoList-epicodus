@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 08, 2019 at 11:08 PM
+-- Generation Time: May 14, 2019 at 04:39 PM
 -- Server version: 5.6.38
 -- PHP Version: 7.2.1
 
@@ -29,9 +29,42 @@ USE `to_do_list_test`;
 --
 
 CREATE TABLE `categories` (
-  `id` int(32) NOT NULL,
-  `name` varchar(255) NOT NULL
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories_items`
+--
+
+CREATE TABLE `categories_items` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  `item_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `categories_items`
+--
+
+INSERT INTO `categories_items` (`id`, `category_id`, `item_id`) VALUES
+(2, 59, 4),
+(3, 59, 5),
+(4, 60, 6),
+(5, 61, 14),
+(6, 63, 15),
+(9, 71, 18),
+(10, 71, 19),
+(11, 72, 20),
+(12, 73, 28),
+(13, 75, 29),
+(16, 83, 32),
+(17, 83, 33),
+(18, 84, 34),
+(19, 85, 42),
+(20, 87, 43);
 
 -- --------------------------------------------------------
 
@@ -40,9 +73,9 @@ CREATE TABLE `categories` (
 --
 
 CREATE TABLE `items` (
-  `id` int(32) NOT NULL,
+  `Id` int(11) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `category_id` int(32) NOT NULL
+  `completed` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -53,13 +86,21 @@ CREATE TABLE `items` (
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Indexes for table `categories_items`
+--
+ALTER TABLE `categories_items`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Indexes for table `items`
 --
 ALTER TABLE `items`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`Id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -69,13 +110,19 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `categories_items`
+--
+ALTER TABLE `categories_items`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
