@@ -164,8 +164,10 @@ namespace ToDoList.Tests
       testCategory.Save();
       Item firstItem = new Item("Mow the lawn");
       firstItem.Save();
+      testCategory.AddItem(firstItem);
       Item secondItem = new Item("Do the dishes");
       secondItem.Save();
+      testCategory.AddItem(secondItem);
       List<Item> testItemList = new List<Item> {firstItem, secondItem};
       Console.WriteLine(testItemList.Count);
       List<Item> resultItemList = testCategory.GetItems();
